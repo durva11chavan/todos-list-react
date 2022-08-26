@@ -7,9 +7,10 @@ import { About } from "./MyComponents/About";
 import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
+  Routes,
 } from "react-router-dom";
+
 
 function App() {
   let initTodo;
@@ -56,23 +57,18 @@ function App() {
   return (
     <Router>
       <Header title="Todos-List" searchBar={false} />
-      <Switch>
+      <Routes>
         <Route
-          exact
           path="/"
-          render={() => {
-            return (
+          element ={
               <>
                 <AddTodo addTodo={addTodo} />
                 <Todos todos={todos} onDelete={onDelete} />
-              </>
-            );
-          }}
-        ></Route>
-        <Route exact path="/about">
-          <About />
-        </Route>
-      </Switch>
+              </>           
+          }
+        />
+        <Route exact path="/about" element={<About />} />
+      </Routes>
       <Footer />
     </Router>
   );
